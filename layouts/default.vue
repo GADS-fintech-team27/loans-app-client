@@ -1,7 +1,7 @@
 <template>
   <v-app class="app">
     <nav-bar />
-    <v-main class="content-section">
+    <v-main class="content-section pt-4">
       <Nuxt />
     </v-main>
     <!-- <Footer /> -->
@@ -24,10 +24,6 @@ export default class DefaultLayout extends Vue {}
 </script>
 
 <style lang="css" scoped>
-.content-section {
-  max-width: 1400px;
-  margin: 0 auto;
-}
 .app {
   background-color: aliceblue;
 }

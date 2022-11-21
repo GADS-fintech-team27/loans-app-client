@@ -1,10 +1,10 @@
 <template>
-  <v-container>
+  <div>
     <hero-section />
-    <about />
-    <who-we-are />
-    <services /> -->
-  </v-container>
+    <testimonials />
+    <!-- <who-we-are />
+    <services />   -->
+  </div>
 </template>
 
 <script>
