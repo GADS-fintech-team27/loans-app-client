@@ -24,6 +24,6 @@ export default class About extends Vue {}
 
 <style lang="css" scoped>
 .about-section {
-  height: 30vh;
+  height: 20vh;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div>
     <hero-section />
+    <about />
     <testimonials />
-    <!-- <who-we-are />
-    <services />   -->
+    <contact-us />
   </div>
 </template>
 
