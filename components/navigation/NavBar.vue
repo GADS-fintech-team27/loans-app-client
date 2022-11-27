@@ -4,7 +4,7 @@
       <v-row justify-space-between>
         <v-col cols="12" md="6" class="d-flex justify-center justify-md-start">
           <div class="logo-contianer">
-            <nuxt-link class="text-center text-sm-left" to="/"
+            <nuxt-link class="text-center text-sm-left font-size-md-26" to="/"
               >CHECKER</nuxt-link
             >
             <P class="font-italic"
@@ -61,7 +61,9 @@
                 :data-qa="`nav-item-${index}`"
                 class="nav-item"
               >
-                <a :to="item.path" class="nav-link">{{ item.name }}</a>
+                <nuxt-link :to="item.path" class="nav-link">{{
+                  item.name
+                }}</nuxt-link>
               </li>
             </ul>
           </nav>
@@ -86,10 +88,6 @@ export default class NavBar extends Vue {
 
   navItems: Array<{ name: string; path: string }> = [
     {
-      name: 'Home',
-      path: '/',
-    },
-    {
       name: 'About Us',
       path: '/',
     },
@@ -107,7 +105,7 @@ export default class NavBar extends Vue {
     },
     {
       name: 'Business Conrner',
-      path: '/',
+      path: '/app',
     },
   ]
 }

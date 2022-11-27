@@ -4,7 +4,7 @@
       <v-row justify-space-between>
         <v-col cols="12" md="6" class="d-flex justify-center justify-md-start">
           <div class="logo-contianer">
-            <nuxt-link class="text-center text-sm-left" to="/"
+            <nuxt-link class="text-center text-sm-left font-size-md-26" to="/"
               >CHECKER</nuxt-link
             >
             <P class="font-italic"
@@ -13,11 +13,8 @@
           </div>
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center justify-md-end">
-          <div class="search-bar d-flex align-center">
-            <div class="search-icon px-3">
-              <v-icon>mdi-magnify</v-icon>
-            </div>
-            <input type="text" placeholder="search" class="search-input" />
+          <div class="d-flex align-center">
+            <Register />
           </div>
         </v-col>
       </v-row>
@@ -27,9 +24,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-
+import Register from '../app/Register.vue'
 @Component({
   name: 'AppNavBar',
+  components: { Register },
 })
 export default class AppNavBar extends Vue {
   isMenuOpen: boolean = false

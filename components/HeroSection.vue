@@ -18,6 +18,7 @@
         small
         color="red"
         class="text-capitalize font-size-12"
+        to="/app"
       >
         get started</v-btn
       >
