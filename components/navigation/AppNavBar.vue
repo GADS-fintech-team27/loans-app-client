@@ -12,61 +12,15 @@
             >
           </div>
         </v-col>
-        <!-- <v-col cols="12" md="6" class="d-flex justify-center justify-md-end">
+        <v-col cols="12" md="6" class="d-flex justify-center justify-md-end">
           <div class="search-bar d-flex align-center">
             <div class="search-icon px-3">
               <v-icon>mdi-magnify</v-icon>
             </div>
             <input type="text" placeholder="search" class="search-input" />
           </div>
-        </v-col> -->
+        </v-col>
       </v-row>
-
-      <div
-        class="d-flex justify-center justify-md-space-between align-center py-4"
-      >
-        <div>
-          <div class="account-button">
-            <v-btn to="app/auth" outlined rounded class="text-lowercase">
-              <v-icon>mdi-account</v-icon>
-              logIn</v-btn
-            >
-          </div>
-
-          <div class="toggle-menu-buttons d-flex justify-center">
-            <v-btn
-              icon
-              data-qa="open-nav-bar-btn"
-              class="header-toggle"
-              @click="toggleMenu"
-            >
-              <v-icon color="black">mdi-menu</v-icon>
-            </v-btn>
-            <v-btn
-              icon
-              data-qa="close-nav-bar-btn"
-              class="header-close"
-              @click="toggleMenu"
-            >
-              <v-icon color="black">mdi-close</v-icon>
-            </v-btn>
-          </div>
-        </div>
-        <div class="d-flex justify-center justify-md-end align-center pt-4">
-          <nav class="nav" :class="{ show: isMenuOpen }">
-            <ul class="nav-list">
-              <li
-                v-for="(item, index) in navItems"
-                :key="index"
-                :data-qa="`nav-item-${index}`"
-                class="nav-item"
-              >
-                <a :to="item.path" class="nav-link">{{ item.name }}</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -75,9 +29,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'NavBar',
+  name: 'AppNavBar',
 })
-export default class NavBar extends Vue {
+export default class AppNavBar extends Vue {
   isMenuOpen: boolean = false
 
   toggleMenu() {

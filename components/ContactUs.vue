@@ -30,7 +30,6 @@
             ></v-col>
             <v-col
               ><v-text-field
-                v-model="address"
                 label="Address"
                 hint="Enter your address"
                 required
