@@ -101,7 +101,7 @@ export default class NavBar extends Vue {
     },
     {
       name: 'Investor Corner',
-      path: '/',
+      path: '/app/investors',
     },
     {
       name: 'Business Conrner',
