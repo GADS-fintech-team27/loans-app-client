@@ -1,6 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  target: 'server',
+
   head: {
     titleTemplate: '',
     title: 'checker',
@@ -26,7 +28,6 @@ export default {
     '@nuxt/typescript-build',
     'nuxt-typed-vuex',
     '@nuxtjs/vuetify',
-    '@nuxt/typescript-build',
   ],
 
   modules: [
@@ -34,10 +35,6 @@ export default {
     ['vue-scrollto/nuxt', { duration: 600, offset: -100 }],
     '~/api',
   ],
-
-  axios: {
-    baseURL: '/',
-  },
 
   vuetify: {
     theme: {

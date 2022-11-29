@@ -38,14 +38,20 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component({
   name: 'bussiness',
 })
-export default class Business extends Vue {}
+export default class Business extends Vue {
+  $accessor: any
+  get businesses() {
+    return this.$accessor.businesses
+  }
+
+  created() {
+    console.log('logging businesses in the investors page')
+    console.log(this.businesses)
+  }
+}
 </script>
 
 <style lang="css" scoped>
-.border {
-  border: 1px solid green;
-}
-
 .bussiness-container {
   max-width: 1400px;
   margin: 0 auto;

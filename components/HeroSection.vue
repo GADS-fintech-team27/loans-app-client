@@ -10,7 +10,7 @@
       <p
         class="font-italic font-size-14 font-size-md-24 font-size-md-18 mb-0 pb-2"
       >
-        Discover the Possibilities
+        Discover the Possibilities {{ email }}
       </p>
       <v-btn
         outlined
@@ -19,6 +19,7 @@
         color="red"
         class="text-capitalize font-size-12"
         to="/app"
+        @click="loadInvestors"
       >
         get started</v-btn
       >
@@ -32,7 +33,16 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component({
   name: 'HeroSection',
 })
-export default class HeroSection extends Vue {}
+export default class HeroSection extends Vue {
+  $accessor: any
+  get email() {
+    return this.$accessor.emailAddress
+  }
+
+  loadInvestors() {
+    // this.$accessor.loadInvestors()
+  }
+}
 </script>
 
 <style lang="css" scoped>
