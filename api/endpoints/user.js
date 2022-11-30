@@ -3,6 +3,7 @@ export default (app) => {
   const authServerUrl = 'http://localhost:8080'
   app.post('/api/auth/sign-in', async (req, res) => {
     console.log('calling the signin endpoint')
+    console.log(req.body)
     try {
       const user = req.body
       const accessToken = await axios.post(

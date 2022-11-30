@@ -10,12 +10,13 @@ import {
 import { UserProfile } from '~/types/app'
 export const state = () => ({
   user: {
-    firstName: 'makiika',
-    lastname: 'aron',
-    emailAddress: 'aronmakiika@gmail.com',
+    firstName: '',
+    lastname: '',
+    emailAddress: '',
   } as UserProfile,
   investors: [] as Array<Investor>,
   businesses: [] as Array<Business>,
+  baseUrl: 'http://localhost:3000',
 })
 
 export const getters = getterTree(state, {
@@ -35,7 +36,7 @@ export const mutations = mutationTree(state, {
 export const actions = actionTree(
   { state, mutations },
   {
-    async nuxtServerInit({ commit }) {
+    async nuxtServerInit({ state, commit }) {
       try {
         const investorsResponse = await this.$axios.$get(
           `http://localhost:3000/api/get-investors`
@@ -55,13 +56,21 @@ export const actions = actionTree(
       }
     },
 
-    async login({ commit }, payload) {
+    async login({ state, commit }, payload) {
       try {
-        await this.$axios.$post(
-          '/api/auth/sign-in',
-          { payload },
-          { baseURL: '/' }
-        )
+        await this.$axios.$post(`${state.baseUrl}/api/auth/sign-in`, {
+          ...payload,
+        })
+        this.$router.push('/app')
+      } catch (e) {}
+    },
+
+    async register({ state, commit }, payload) {
+      console.log('calling the register end point')
+      try {
+        await this.$axios.$post(`${state.baseUrl}/api/auth/sign-up`, {
+          payload,
+        })
       } catch (e) {}
     },
   }
