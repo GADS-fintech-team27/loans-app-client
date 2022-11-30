@@ -1,11 +1,18 @@
 import axios from 'axios'
 import checkAuth from '../middleware'
 export default (app) => {
-  app.post('/api/create-business', checkAuth, async (req, res) => {
-    const serverUrl = 'http://localhost:8000/'
+  const serverUrl = 'http://localhost:8000'
+  app.post('/api/create-business', async (req, res) => {
     try {
+      console.log('calling the register business endpoint')
       const business = req.body
-      await axios.post(`${serverUrl}/bussiness`, { ...business })
+      const businessReponse = await axios.post(`${serverUrl}/bussiness`, {
+        ...business,
+      })
+      console.log(businessReponse.data)
+      res
+        .status(businessReponse.data.status_code)
+        .json(businessReponse.data.data)
     } catch (error) {
       res.status(500).json({ errorMessage: 'internal server error ' })
     }

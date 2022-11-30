@@ -31,47 +31,75 @@
           <v-container>
             <v-row>
               <v-col cols="12" md="6">
-                <v-text-field label="Business Name" outlined></v-text-field>
+                <v-text-field
+                  v-model="businessDetails.businessName"
+                  label="Business Name"
+                  outlined
+                ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field label="Business Type" outlined></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-text-field label="Physical Address" outlined></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field label="Owner Contact" outlined></v-text-field>
+                <v-text-field
+                  v-model="businessDetails.businessType"
+                  label="Business Type"
+                  outlined
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
+                  v-model="businessDetails.physicalAddress"
+                  label="Physical Address"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="businessDetails.ownerContact"
+                  label="Owner Contact"
+                  outlined
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="businessDetails.collateral"
                   label="Collateral security"
                   outlined
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field label="loan amout" outlined></v-text-field>
+                <v-text-field
+                  v-model="businessDetails.loanAmount"
+                  label="loan amout"
+                  outlined
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12">
                 <v-file-input
                   label="add bussiness photo"
+                  v-model="businessDetails.bussinessPhotoUrl"
                   outlined
                   prepend-icon="mdi-camera"
                 ></v-file-input>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="description" outlined></v-text-field>
+                <v-text-field
+                  v-model="businessDetails.description"
+                  label="description"
+                  outlined
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex flex-column justify-center align-center">
-          <v-btn width="100%" class="ml-n1">Register</v-btn>
+          <v-btn width="100%" @click="registerBusiness" class="ml-n1"
+            >Register Business</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -87,6 +115,20 @@ import { Vue, Component } from 'vue-property-decorator'
 })
 export default class Register extends Vue {
   dialog = false
+  businessDetails = {
+    businessName: 'Seroma Uganda',
+    businessType: 'Hardware',
+    collateral: '7 trucks',
+    physicalAddress: 'Kampala Uganda',
+    loanAmount: 100000,
+    ownerContact: '+256750705495',
+    bussinessPhotoUrl: '',
+    description: 'Seroma is the best selling hardware shop in Uganda',
+  }
+
+  registerBusiness() {
+    return this.$accessor.registerBusiness({ ...this.businessDetails })
+  }
 }
 </script>
 

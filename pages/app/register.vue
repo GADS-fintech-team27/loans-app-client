@@ -52,7 +52,7 @@ export default class AuthPage extends Vue {
   showSignIn = false
   showSignUp = false
   signUpDetails = {
-    fistname: '',
+    firstname: '',
     lastname: '',
     email: '',
     password: '',

@@ -6,12 +6,9 @@ export default (app) => {
     console.log(req.body)
     try {
       const user = req.body
-      const accessToken = await axios.post(
-        `http://localhost:8080/auth/sign-in`,
-        {
-          ...user,
-        }
-      )
+      const accessToken = await axios.post(`${authServerUrl}/auth/sign-in`, {
+        ...user,
+      })
       res.cookie('accessToken', accessToken.data, {
         maxAge: 3600000,
         secure: false,
@@ -23,7 +20,9 @@ export default (app) => {
 
   app.post('/api/auth/sign-up', async (req, res) => {
     try {
+      console.log('logging the sign-up endpoint in the BFF')
       const user = req.body
+      console.log(user)
       await axios.post(`${authServerUrl}/auth/sign-up`, { ...user })
       res.status(204).json({})
     } catch (error) {

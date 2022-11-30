@@ -17,6 +17,7 @@ export const state = () => ({
   investors: [] as Array<Investor>,
   businesses: [] as Array<Business>,
   baseUrl: 'http://localhost:3000',
+  registrationError: {},
 })
 
 export const getters = getterTree(state, {
@@ -31,6 +32,9 @@ export const mutations = mutationTree(state, {
   setBusiness(state, businesses: Array<Business>) {
     state.businesses = [...businesses]
   },
+  setRegistrationError(state, payload) {
+    state.registrationError = { ...payload }
+  },
 })
 
 export const actions = actionTree(
@@ -39,7 +43,7 @@ export const actions = actionTree(
     async nuxtServerInit({ state, commit }) {
       try {
         const investorsResponse = await this.$axios.$get(
-          `http://localhost:3000/api/get-investors`
+          `${state.baseUrl}/api/get-investors`
         )
         commit('setInvestors', investorsResponse.data)
       } catch (error) {
@@ -48,7 +52,7 @@ export const actions = actionTree(
 
       try {
         const businessesResponse = await this.$axios.$get(
-          `http://localhost:3000/api/get-businesses`
+          `${state.baseUrl}/api/get-businesses`
         )
         commit('setBusiness', businessesResponse.data)
       } catch (error) {
@@ -62,16 +66,32 @@ export const actions = actionTree(
           ...payload,
         })
         this.$router.push('/app')
-      } catch (e) {}
+      } catch (e) {
+        commit('setRegistrationError', { erorMessage: 'An error has occured' })
+      }
     },
 
     async register({ state, commit }, payload) {
-      console.log('calling the register end point')
       try {
         await this.$axios.$post(`${state.baseUrl}/api/auth/sign-up`, {
-          payload,
+          ...payload,
         })
-      } catch (e) {}
+        this.$router.push('/app/auth')
+      } catch (e) {
+        commit('setRegistrationError', { erorMessage: 'An error has occured' })
+      }
+    },
+
+    async registerBusiness({ state, commit }, payload) {
+      try {
+        console.log('calling the register business endpoint in the store')
+        console.log(payload)
+        await this.$axios.$post(`${state.baseUrl}/api/create-business`, {
+          ...payload,
+        })
+      } catch (e) {
+        commit('setRegistrationError', { erorMessage: 'An error has occured' })
+      }
     },
   }
 )
