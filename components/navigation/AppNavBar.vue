@@ -14,7 +14,8 @@
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center justify-md-end">
           <div class="d-flex align-center">
-            <Register />
+            <register />
+            <investors-dialog />
           </div>
         </v-col>
       </v-row>
@@ -25,12 +26,14 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Register from '../app/Register.vue'
+import InvestorsDialog from '../app/InvestorsDialog.vue'
 @Component({
   name: 'AppNavBar',
-  components: { Register },
+  components: { Register, InvestorsDialog },
 })
 export default class AppNavBar extends Vue {
   isMenuOpen: boolean = false
+  $router: any
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen

@@ -7,7 +7,9 @@
       max-width="800"
     >
       <template #activator="{ on }">
-        <v-btn outlined color="orange " v-on="on">Register bussiness</v-btn>
+        <v-btn outlined color="orange " v-on="on"
+          >Register as an Investor</v-btn
+        >
       </template>
       <v-card max-width="800px" shaped class="px-10 mx-auto pb-8 signUp">
         <div class="d-flex justify-end pt-4">
@@ -23,22 +25,22 @@
           >
         </div>
         <v-card-title class="d-flex justify-center">
-          <p>Register Bussiness</p>
+          <p>Register as an Investor</p>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="businessDetails.businessName"
-                  label="Business Name"
+                  v-model="investorDetails.fullName"
+                  label="full Name"
                   outlined
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="businessDetails.businessType"
-                  label="Business Type"
+                  v-model="investorDetails.occupation"
+                  label="occupation"
                   outlined
                 ></v-text-field>
               </v-col>
@@ -46,57 +48,44 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="businessDetails.physicalAddress"
+                  v-model="investorDetails.telephoneNumber"
                   label="Physical Address"
                   outlined
                 ></v-text-field>
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="businessDetails.ownerContact"
-                  label="Owner Contact"
-                  outlined
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="businessDetails.collateral"
-                  label="Collateral security"
-                  outlined
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="businessDetails.loanAmount"
-                  label="loan amout"
+                  v-model="investorDetails.emailAddress"
+                  label="email"
                   outlined
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12">
+                <v-text-field
+                  v-model="investorDetails.rates"
+                  label="interest rates"
+                  outlined
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
                 <v-file-input
-                  label="add bussiness photo"
-                  v-model="businessDetails.bussinessPhotoUrl"
+                  label="add photo"
+                  v-model="investorDetails.profilePhotoUrl"
                   outlined
                   prepend-icon="mdi-camera"
                 ></v-file-input>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="businessDetails.description"
-                  label="description"
-                  outlined
-                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex flex-column justify-center align-center">
-          <v-btn width="100%" @click="registerBusiness" class="ml-n1"
-            >Register Business</v-btn
+          <v-btn
+            width="100%"
+            @click="registerInvestor"
+            class="ml-n1 text-capitalize"
+            >Register as an Investor</v-btn
           >
         </v-card-actions>
       </v-card>
@@ -113,19 +102,17 @@ import { Vue, Component } from 'vue-property-decorator'
 })
 export default class Register extends Vue {
   dialog = false
-  businessDetails = {
-    businessName: '',
-    businessType: '',
-    collateral: '',
-    physicalAddress: '',
-    loanAmount: undefined,
-    ownerContact: '',
-    bussinessPhotoUrl: '',
-    description: '',
+  investorDetails = {
+    fullName: '',
+    occupation: '',
+    telephoneNumber: '',
+    emailAddress: '',
+    rates: null,
+    profilePhotoUrl: '',
   }
 
-  registerBusiness() {
-    return this.$accessor.registerBusiness({ ...this.businessDetails })
+  registerInvestor() {
+    return this.$accessor.registerInvestor({ ...this.investorDetails })
   }
 }
 </script>

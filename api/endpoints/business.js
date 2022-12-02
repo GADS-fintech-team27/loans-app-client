@@ -9,7 +9,6 @@ export default (app) => {
       const businessReponse = await axios.post(`${serverUrl}/bussiness`, {
         ...business,
       })
-      console.log(businessReponse.data)
       res
         .status(businessReponse.data.status_code)
         .json(businessReponse.data.data)

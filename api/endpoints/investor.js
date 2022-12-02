@@ -2,10 +2,17 @@ import axios from 'axios'
 import checkAuth from '../middleware'
 export default (app) => {
   const serverUrl = 'http://localhost:8000'
-  app.post('/api/create-investor', checkAuth, async (req, res) => {
+  app.post('/api/create-investor', async (req, res) => {
     try {
+      console.log('calling the investor endpoint from the investors BFF')
       const investor = req.body
-      await axios.post(`${serverUrl}/investor`, { ...investors })
+      console.log(investor)
+      const registerdInvestor = await axios.post(`${serverUrl}/investor`, {
+        ...investor,
+      })
+      res
+        .status(registerdInvestor.data.status_code)
+        .json(registerdInvestor.data.data)
     } catch (error) {
       res.status(500).json({ errorMessage: 'internal server error ' })
     }

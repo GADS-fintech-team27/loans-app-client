@@ -43,11 +43,6 @@ export default class Business extends Vue {
   get investors() {
     return this.$accessor.investors
   }
-
-  created() {
-    console.log('logging investors in the investors page')
-    console.log(this.investors)
-  }
 }
 </script>
 

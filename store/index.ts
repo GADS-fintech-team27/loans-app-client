@@ -84,9 +84,21 @@ export const actions = actionTree(
 
     async registerBusiness({ state, commit }, payload) {
       try {
-        console.log('calling the register business endpoint in the store')
-        console.log(payload)
         await this.$axios.$post(`${state.baseUrl}/api/create-business`, {
+          ...payload,
+        })
+      } catch (e) {
+        commit('setRegistrationError', { erorMessage: 'An error has occured' })
+      }
+    },
+
+    async registerInvestor({ state, commit }, payload) {
+      try {
+        console.log(
+          'calling an endpoint for registering the investor in the store'
+        )
+        console.log(payload)
+        await this.$axios.$post(`${state.baseUrl}/api/create-investor`, {
           ...payload,
         })
       } catch (e) {
