@@ -6,7 +6,6 @@ export default (app) => {
     try {
       console.log('calling the investor endpoint from the investors BFF')
       const investor = req.body
-      console.log(investor)
       const registerdInvestor = await axios.post(`${serverUrl}/investor`, {
         ...investor,
       })
@@ -14,7 +13,11 @@ export default (app) => {
         .status(registerdInvestor.data.status_code)
         .json(registerdInvestor.data.data)
     } catch (error) {
-      res.status(500).json({ errorMessage: 'internal server error ' })
+      res
+        .status(500)
+        .json({
+          errorMessage: 'an error has occured while creating an investor',
+        })
     }
   })
 

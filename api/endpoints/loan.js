@@ -1,13 +1,20 @@
 import axios from 'axios'
 import checkAuth from '../middleware'
 export default (app) => {
-  const serverUrl = 'http://localhost:8000/'
+  const serverUrl = 'http://localhost:8000'
   app.post('/api/create-loan', checkAuth, async (req, res) => {
     try {
       const loan = req.body
-      await axios.post(`${serverUrl}/investor`, { ...loan })
+      const createdLoanResponse = await axios.post(`${serverUrl}/loans`, {
+        ...loan,
+      })
+      res
+        .status(createdLoanResponse.data.status_code)
+        .json(createdLoanResponse.data.data)
     } catch (error) {
-      res.status(500).json({ errorMessage: 'internal server error ' })
+      res
+        .status(500)
+        .json({ errorMessage: 'an error has occured while creating the loan ' })
     }
   })
 
@@ -19,7 +26,7 @@ export default (app) => {
     }
   })
 
-  app.get('api/get-loan:/id', async (req, res) => {
+  app.get('api/get-loan:/id',checkAuth, async (req, res) => {
     try {
       const id = req.params.id
       await axios.get(`${serverUrl}/loans:/${id}`)
@@ -28,7 +35,7 @@ export default (app) => {
     }
   })
 
-  app.delete('api/get-loan:/id', checkAuth, async (req, res) => {
+  app.delete('api/get-loan:/id',checkAuth, async (req, res) => {
     try {
       const id = req.params.id
       await axios.get(`${serverUrl}/loans:/${id}`)

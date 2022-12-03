@@ -2,7 +2,7 @@
   <v-container class="bussiness-container">
     <v-row dense>
       <v-col
-        v-for="(item, index) in 12"
+        v-for="(investor, index) in investors"
         :key="index"
         class="my-2"
         cols="12"
@@ -14,7 +14,7 @@
             height="150px"
           ></v-img>
 
-          <v-card-title> Annex limited </v-card-title>
+          <v-card-title> {{ investor.fullName }}</v-card-title>
 
           <v-card-subtitle> Hardware</v-card-subtitle>
           <v-card-text

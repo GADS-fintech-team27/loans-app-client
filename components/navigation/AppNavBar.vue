@@ -14,8 +14,8 @@
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center justify-md-end">
           <div class="d-flex align-center">
-            <register />
-            <investors-dialog />
+            <register v-if="currentPath === '/app'" />
+            <investors-dialog v-if="currentPath === '/app/investors'" />
           </div>
         </v-col>
       </v-row>
@@ -34,9 +34,14 @@ import InvestorsDialog from '../app/InvestorsDialog.vue'
 export default class AppNavBar extends Vue {
   isMenuOpen: boolean = false
   $router: any
+  $route: any
 
+  currentPath = ''
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen
+  }
+  mounted() {
+    this.currentPath = this.$route.path
   }
 }
 </script>

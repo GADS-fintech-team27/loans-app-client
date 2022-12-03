@@ -23,7 +23,9 @@
             selected to meet the needs of our customers
           </v-card-text>
           <v-card-actions>
-            <v-btn color="orange lighten-2" text> more </v-btn>
+            <v-btn color="orange lighten-2" outlined class="text-lowercase">
+              more
+            </v-btn>
             <v-spacer></v-spacer>
             <v-card-title class="orange--text lighten-2">5000 </v-card-title>
           </v-card-actions>
