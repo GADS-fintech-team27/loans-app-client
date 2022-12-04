@@ -6,36 +6,60 @@
       </v-card-title>
       <v-card-text>
         <v-container>
-          <v-text-field
-            v-model="signUpDetails.firstname"
-            label="First Name"
-            outlined
-          ></v-text-field>
+          <v-form v-model="formValid">
+            <v-text-field
+              v-model="signUpDetails.firstname"
+              label="First Name"
+              :rules="generalRule"
+              outlined
+            ></v-text-field>
 
-          <v-text-field
-            label="Last Name"
-            v-model="signUpDetails.lastname"
-            outlined
-          ></v-text-field>
+            <v-text-field
+              label="Last Name"
+              v-model="signUpDetails.lastname"
+              :rules="generalRule"
+              outlined
+            ></v-text-field>
 
-          <v-text-field
-            v-model="signUpDetails.email"
-            label="email"
-            outlined
-          ></v-text-field>
+            <v-text-field
+              v-model="signUpDetails.email"
+              label="email"
+              :rules="emailRules"
+              outlined
+            ></v-text-field>
 
-          <v-text-field
-            label="password"
-            v-model="signUpDetails.password"
-            outlined
-          ></v-text-field>
+            <v-text-field
+              label="password"
+              v-model="signUpDetails.password"
+              :rules="generalRule"
+              outlined
+            ></v-text-field>
+            <v-text-field
+              label="confirm password"
+              :rules="generalRule"
+              outlined
+            ></v-text-field>
+          </v-form>
         </v-container>
       </v-card-text>
       <v-card-actions class="d-flex flex-column justify-center align-center">
-        <v-btn width="100%" @click="register" class="mb-5"
+        <v-btn
+          width="100%"
+          outlined
+          color="orange "
+          @click="register"
+          :disabled="!formValid"
+          class="mb-5"
           >Create an account</v-btn
         >
-        <v-btn width="100%" class="ml-n1" to="/app/auth">Sign in</v-btn>
+        <v-btn
+          width="100%"
+          class="ml-n1"
+          outlined
+          color="orange "
+          to="/app/auth"
+          >Sign in</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
@@ -51,12 +75,17 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class AuthPage extends Vue {
   showSignIn = false
   showSignUp = false
+  formValid = false
   signUpDetails = {
     firstname: '',
     lastname: '',
     email: '',
     password: '',
   }
+
+  generalRule = [(value) => !!value || 'required field']
+
+  emailRules = [(value) => /.+@.+/.test(value) || 'E-mail must be valid']
 
   register() {
     return this.$accessor.register({ ...this.signUpDetails })
