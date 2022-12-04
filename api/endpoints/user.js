@@ -29,7 +29,7 @@ export default (app) => {
   app.get('/user', async (req, res) => {
     try {
       const user = req.body
-      await axios.get(`${authServerUrl}/auth`, { ...user })
+      await axios.get(`${authServerUrl}/auth/user/:${id}`, { ...user })
     } catch (error) {
       res.status(500).json({
         errorMessage: 'an error has occured while fetching user profile ',

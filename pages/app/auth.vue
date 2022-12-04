@@ -20,8 +20,15 @@
         </v-container>
       </v-card-text>
       <v-card-actions class="d-flex flex-column justify-center align-center">
-        <v-btn width="100%" @click="login" class="mb-5">Sign in</v-btn>
-        <v-btn width="100%" class="ml-n1" to="/app/register"
+        <v-btn width="100%" @click="login" class="mb-5" outlined color="orange "
+          >Sign in</v-btn
+        >
+        <v-btn
+          width="100%"
+          class="ml-n1"
+          outlined
+          color="orange "
+          to="/app/register"
           >Create an account</v-btn
         >
       </v-card-actions>
