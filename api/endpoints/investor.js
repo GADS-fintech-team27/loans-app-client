@@ -4,7 +4,6 @@ export default (app) => {
   const serverUrl = 'http://localhost:8000'
   app.post('/api/create-investor', async (req, res) => {
     try {
-      console.log('calling the investor endpoint from the investors BFF')
       const investor = req.body
       const registerdInvestor = await axios.post(`${serverUrl}/investor`, {
         ...investor,
@@ -13,17 +12,14 @@ export default (app) => {
         .status(registerdInvestor.data.status_code)
         .json(registerdInvestor.data.data)
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          errorMessage: 'an error has occured while creating an investor',
-        })
+      res.status(500).json({
+        errorMessage: 'an error has occured while creating an investor',
+      })
     }
   })
 
   app.get('/api/get-investors', async (req, res) => {
     try {
-      console.log('calling get investors')
       const investors = await axios.get(`${serverUrl}/investor/`)
       res.status(investors.data.status_code).json(investors.data)
     } catch (error) {

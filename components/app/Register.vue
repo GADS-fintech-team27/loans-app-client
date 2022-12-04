@@ -77,12 +77,12 @@
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-file-input
+                <!-- <v-file-input
                   label="add bussiness photo"
                   v-model="businessDetails.bussinessPhotoUrl"
                   outlined
                   prepend-icon="mdi-camera"
-                ></v-file-input>
+                ></v-file-input> -->
               </v-col>
               <v-col cols="12">
                 <v-text-field
@@ -95,7 +95,13 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex flex-column justify-center align-center">
-          <v-btn width="100%" @click="registerBusiness" class="ml-n1"
+          <v-btn
+            width="100%"
+            href="/app"
+            outlined
+            color="orange "
+            @click="registerBusiness"
+            class="ml-n1"
             >Register Business</v-btn
           >
         </v-card-actions>
@@ -120,12 +126,12 @@ export default class Register extends Vue {
     physicalAddress: '',
     loanAmount: undefined,
     ownerContact: '',
-    bussinessPhotoUrl: '',
+    bussinessPhotoUrl: 'string',
     description: '',
   }
 
   registerBusiness() {
-    return this.$accessor.registerBusiness({ ...this.businessDetails })
+    this.$accessor.registerBusiness({ ...this.businessDetails })
   }
 }
 </script>

@@ -69,14 +69,7 @@
                   outlined
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
-                <v-file-input
-                  label="add photo"
-                  v-model="investorDetails.profilePhotoUrl"
-                  outlined
-                  prepend-icon="mdi-camera"
-                ></v-file-input>
-              </v-col>
+              <v-col cols="12"> </v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -85,6 +78,9 @@
             width="100%"
             @click="registerInvestor"
             class="ml-n1 text-capitalize"
+            href="/app/investors"
+            outlined
+            color="orange "
             >Register as an Investor</v-btn
           >
         </v-card-actions>
@@ -108,7 +104,7 @@ export default class Register extends Vue {
     telephoneNumber: '',
     emailAddress: '',
     rates: null,
-    profilePhotoUrl: '',
+    profilePhotoUrl: 'string',
   }
 
   registerInvestor() {
